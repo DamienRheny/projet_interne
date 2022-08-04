@@ -76,7 +76,14 @@ view: joinv1 {
     type: number
     sql: ${total_bytes_billed}*5*POWER(10,-12) ;;
   }
+
+  measure: sum_of_price {
+    description: "Sum of all the query"
+    type: sum
+    sql: ${total_bytes_billed}*5*POWER(10,-12) ;;
+  }
 }
+
 
 # view: joinv1 {
 #   # Or, you could make this view a derived table, like this:
