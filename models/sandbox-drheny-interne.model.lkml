@@ -8,3 +8,5 @@ datagroup:sandbox_drheny_interne_datagroup{
 }
 
 persist_with: sandbox_drheny_interne_datagroup
+
+explore: joinv1  {}
