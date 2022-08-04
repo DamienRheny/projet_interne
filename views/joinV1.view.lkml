@@ -71,6 +71,11 @@ view: joinv1 {
   #   sql: ${TABLE}.most_recent_purchase_at ;;
   # }
   #
+  measure: count {
+    type: count
+    drill_fields: []
+  }
+
   measure: price {
     description: "Price of the query"
     type: number
