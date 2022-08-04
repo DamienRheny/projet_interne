@@ -15,6 +15,12 @@ view: joinv1 {
     sql: ${TABLE}.total_bytes_billed ;;
   }
 
+  dimension: Dashboard_Title{
+    description: "The title of the dashboard"
+    type: string
+    sql: ${TABLE}.Dashboard_Title ;;
+  }
+
   # dimension_group: most_recent_purchase {
   #   description: "The date when each user last ordered"
   #   type: time
