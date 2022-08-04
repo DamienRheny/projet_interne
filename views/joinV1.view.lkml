@@ -3,8 +3,50 @@ view: joinv1 {
   sql_table_name: Looker_AllData.all_join ;;
 
   # # Define your dimensions and measures here, like this:
-  dimension: project_id {
+  dimension: query_id {
+    description: "Unique ID for each query"
+    type: number
+    sql: ${TABLE}.Query_ID ;;
+  }
+
+  dimension: history_slug{
+    description: "Unique ID for each billing"
+    type: string
+    sql: ${TABLE}.History_Slug;;
+  }
+
+  dimension: history_created_time {
     description: "Unique ID for each project"
+    type: date_time
+    sql: ${TABLE}.History_Created_Time ;;
+  }
+
+  dimension: dashboard_id{
+    description: "The id of the dashboard"
+    type: string
+    sql: ${TABLE}.Dashboard_ID__User_defined_only_ ;;
+  }
+
+  dimension: dashboard_title{
+    description: "The title of the dashboard"
+    type: string
+    sql: ${TABLE}.Dashboard_Title ;;
+  }
+
+  dimension: dashboard_element_id{
+    description: "The id of the tile"
+    type: number
+    sql: ${TABLE}.Dashboard_Element_ID;;
+  }
+
+  dimension: dashboard_element_title{
+    description: "The title of the tile"
+    type: string
+    sql: ${TABLE}.Dashboard_Element_Ritle;;
+  }
+
+  dimension: project_id {
+    description: "Unique GCP ID for each project"
     type: string
     sql: ${TABLE}.project_id ;;
   }
@@ -15,10 +57,11 @@ view: joinv1 {
     sql: ${TABLE}.total_bytes_billed ;;
   }
 
-  dimension: Dashboard_Title{
+
+  dimension: user_name{
     description: "The title of the dashboard"
     type: string
-    sql: ${TABLE}.Dashboard_Title ;;
+    sql: ${TABLE}.User_Name;;
   }
 
   # dimension_group: most_recent_purchase {
