@@ -15,9 +15,10 @@ view: joinv1 {
     sql: ${TABLE}.History_Slug;;
   }
 
-  dimension: history_created_time {
+  dimension_group: history_created_time {
     description: "Unique ID for each project"
-    type: date_time
+    type: time
+    timeframes: [date, week, month, year]
     sql: ${TABLE}.History_Created_Time ;;
   }
 
@@ -64,12 +65,7 @@ view: joinv1 {
     sql: ${TABLE}.User_Name;;
   }
 
-  dimension: month_creation {
-    description: "Month of the query"
-    type: string
-    sql: MONTH(${history_created_time}) ;;
 
-  }
   # dimension_group: most_recent_purchase {
   #   description: "The date when each user last ordered"
   #   type: time
