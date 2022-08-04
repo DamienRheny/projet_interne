@@ -64,6 +64,12 @@ view: joinv1 {
     sql: ${TABLE}.User_Name;;
   }
 
+  dimension: month_creation {
+    description: "Month of the query"
+    type: string
+    sql: MONTH(${history_created_time}) ;;
+
+  }
   # dimension_group: most_recent_purchase {
   #   description: "The date when each user last ordered"
   #   type: time
@@ -87,6 +93,8 @@ view: joinv1 {
     type: sum
     sql: ${total_bytes_billed}*5*POWER(10,-12) ;;
   }
+
+
 }
 
 
