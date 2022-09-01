@@ -43,7 +43,7 @@ view: joinv1 {
   dimension: dashboard_element_title{
     description: "The title of the tile"
     type: string
-    sql: ${TABLE}.Dashboard_Element_Ritle;;
+    sql: ${TABLE}.Dashboard_Element_Title;;
   }
 
   dimension: project_id {
