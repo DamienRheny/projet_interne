@@ -100,7 +100,11 @@ view: joinv1 {
     sql: ${total_bytes_billed}*5*POWER(10,-12) ;;
   }
 
-
+  measure: rank {
+    description: "Rank"
+    type: number
+    sql: RANK() OVER (ORDER BY ${sum_of_price}) ;;
+  }
 }
 
 
