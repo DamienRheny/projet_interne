@@ -60,12 +60,22 @@ view: joinv1 {
 
 
   dimension: user_name{
-    description: "The title of the dashboard"
+    description: "The name of the user"
     type: string
     sql: ${TABLE}.User_Name;;
   }
 
+  dimension: model_name{
+    description: "The name of the model"
+    type: string
+    sql: ${TABLE}.Model_Set_Name;;
+  }
 
+  dimension: folder_name{
+    description: "The name of the folder"
+    type: string
+    sql: ${TABLE}.Folders_Name;;
+  }
   # dimension_group: most_recent_purchase {
   #   description: "The date when each user last ordered"
   #   type: time
