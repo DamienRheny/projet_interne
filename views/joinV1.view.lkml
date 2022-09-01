@@ -103,7 +103,7 @@ view: joinv1 {
   measure: rank {
     description: "Rank"
     type: number
-    sql: RANK() OVER (ORDER BY ${sum_of_price}) ;;
+    sql: RANK() OVER (ORDER BY ${sum_of_price} DESC) ;;
   }
 }
 
