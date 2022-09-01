@@ -87,6 +87,11 @@ view: joinv1 {
     type: count
     drill_fields: []
   }
+  measure: sum_of_bytes{
+    description: "Sum of bytes billed"
+    type: sum
+    sql:  ${total_bytes_billed} ;;
+  }
 
   measure: price {
     description: "Price of the query"
