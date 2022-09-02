@@ -1,12 +1,11 @@
 connection: "sandbox-drheny-interne"
 
-include: "/views/**/*.view"
 
 datagroup:sandbox_drheny_interne_datagroup{
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "1 hour"
+  max_cache_age: "200 hour"
 }
 
 persist_with: sandbox_drheny_interne_datagroup
 
-explore: joinv1  {}
+include: "/explores/joinV1.explore.lkml"
