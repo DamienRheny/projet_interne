@@ -8,4 +8,4 @@ datagroup:sandbox_drheny_interne_datagroup{
 
 persist_with: sandbox_drheny_interne_datagroup
 
-include: "/explores/joinV1.explore.lkml"
+include: "/explores/joinv1.explore.lkml"

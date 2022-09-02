@@ -1,3 +1,3 @@
 include: "/views/**/*.view"
 
-explore: joinV1  {}
+explore: joinv1  {}
