@@ -76,6 +76,14 @@ view: joinv1 {
     type: string
     sql: ${TABLE}.Folders_Name;;
   }
+
+  dimension: choicePriceBytes{
+    description: "choice"
+    type: string
+
+  }
+
+
   # dimension_group: most_recent_purchase {
   #   description: "The date when each user last ordered"
   #   type: time
@@ -110,6 +118,13 @@ view: joinv1 {
     type: number
     sql: RANK() OVER (ORDER BY ${sum_of_price} DESC) ;;
   }
+
+  measure: chooseMeasure {
+    description: "choose right mesaure"
+    type: number
+    sql: if(${choicePriceBytes}='bytes',${sum_of_bytes},${sum_of_price}) ;;
+  }
+
 }
 
 
