@@ -2,11 +2,38 @@ include: "/views/01_based_views/all_join.view.lkml"
 
 view: +all_join {
 
-  dimension: choicePriceBytes{
-    description: "choice"
-    type: string
+
+  parameter: choiceCurrency {
+    type: unquoted
+    label: "Choose the unit of the dashboard, Bytes or Price"
+    allowed_value: {
+      value: "B"
+      label: "Bytes"
+    }
+    allowed_value: {
+      value: "P"
+      label: "Price"
+    }
+    default_value: "P"
   }
 
+  parameter: choiceUnit{
+    type: unquoted
+    label: "Choose bytes, megabytes, gigabytes"
+    allowed_value: {
+      value: "bytes"
+      label: "Bytes"
+    }
+    allowed_value: {
+      value: "megabytes"
+      label: "Megabytes"
+    }
+    allowed_value: {
+      value: "gigabytes"
+      label: "Gigabytes"
+    }
+    default_value: "bytes"
+  }
 
 
   # dimension_group: most_recent_purchase {
@@ -44,9 +71,26 @@ view: +all_join {
     sql: RANK() OVER (ORDER BY ${sum_of_price} DESC) ;;
   }
 
-  measure: chooseMeasure {
+  measure: currency {
     description: "choose right mesaure"
     type: number
-    sql: if(${choicePriceBytes}='bytes',${sum_of_bytes},${sum_of_price}) ;;
+    sql:{% if choiceCurrency._parameter_value == "P" %}
+  ${sum_of_price}
+{% else %}
+${sum_of_bytes}
+{% endif %};;
+  }
+
+
+  measure: unit {
+    description: "Choose bytes, megabytes, gigabytes"
+    type: number
+    sql: {% if choiceUnit._parameter_value == "bytes" %}
+  ${sum_of_bytes}
+    {% elsif choiceUnit._parameter_value == "megabytes" %}
+  ${sum_of_bytes}*9.5367431640625*POWER(10,-7)
+    {% else %}
+  ${sum_of_bytes}*9.313225746154785*POWER(10,-10)
+  {% endif %} ;;
   }
 }
