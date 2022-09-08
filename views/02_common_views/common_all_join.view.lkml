@@ -21,6 +21,14 @@ view: +all_join {
     type: unquoted
     label: "Choose bytes, megabytes, gigabytes"
     allowed_value: {
+      value: "euro"
+      label: "Euro"
+    }
+    allowed_value: {
+      value: "dollar"
+      label: "Dollar"
+    }
+    allowed_value: {
       value: "bytes"
       label: "Bytes"
     }
@@ -32,7 +40,7 @@ view: +all_join {
       value: "gigabytes"
       label: "Gigabytes"
     }
-    default_value: "bytes"
+    default_value: "euro"
   }
 
 
@@ -72,7 +80,7 @@ view: +all_join {
   }
 
   measure: currency {
-    description: "choose right mesaure"
+    description: "choose right measure"
     type: number
     sql:{% if choiceCurrency._parameter_value == "P" %}
   ${sum_of_price}
@@ -86,11 +94,17 @@ ${sum_of_bytes}
     description: "Choose bytes, megabytes, gigabytes"
     type: number
     sql: {% if choiceUnit._parameter_value == "bytes" %}
-  ${sum_of_bytes}
+      ${sum_of_bytes}
     {% elsif choiceUnit._parameter_value == "megabytes" %}
-  ${sum_of_bytes}*9.5367431640625*POWER(10,-7)
+      ${sum_of_bytes}*9.5367431640625*POWER(10,-7)
+    {% elsif choiceUnit._parameter_value == "gigabytes" %}
+      ${sum_of_bytes}*9.313225746154785*POWER(10,-10)
+    {% elsif choiceUnit._parameter_value == "dollar" %}
+      ${sum_of_price}
+    {% elsif choiceUnit._parameter_value == "euro" %}
+      ${sum_of_price}
     {% else %}
-  ${sum_of_bytes}*9.313225746154785*POWER(10,-10)
+      ${sum_of_price}
   {% endif %} ;;
   }
 }
