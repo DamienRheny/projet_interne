@@ -87,6 +87,8 @@ view: +all_join {
 {% else %}
 ${sum_of_bytes}
 {% endif %};;
+
+    drill_fields: [user_name, folders_name, model_set_name, permission_set_name,dashboard_title, history_created_time]
   }
 
 
@@ -106,5 +108,7 @@ ${sum_of_bytes}
     {% else %}
       ${sum_of_price}
   {% endif %} ;;
+
+    drill_fields: [user_name, folders_name, model_set_name, permission_set_name,dashboard_title, history_created_time]
   }
 }

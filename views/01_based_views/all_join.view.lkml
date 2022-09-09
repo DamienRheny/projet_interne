@@ -138,6 +138,6 @@ view: all_join {
 
   measure: count {
     type: count
-    drill_fields: [user_name, folders_name, model_set_name, permission_set_name, history_created_time]
+    drill_fields: [user_name, folders_name, model_set_name, permission_set_name,dashboard_title, history_created_time]
   }
 }
