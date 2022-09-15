@@ -5,6 +5,7 @@ view: +all_join{
 
   parameter: choiceCurrency {
     type: unquoted
+    view_label: "Unit"
     label: "Choose the unit of the dashboard, Bytes or Price"
     suggest_dimension: unite
     suggestable: yes
@@ -32,6 +33,7 @@ view: +all_join{
   }
   parameter: choiceUnit{
     type: unquoted
+    view_label: "Unit"
     label: "Choose euro, dollars, bytes, megabytes, gigabytes"
     suggest_dimension:  valeur
     suggestable: yes
@@ -145,6 +147,81 @@ ${sum_of_bytes}
 
     fields: [user_name, unit, dashboard_title, folders_name, permission_set_name]
   }
+
+  parameter: choose_rows {
+    label: "Choose Grouping (Rows)"
+    view_label: "_PoP"
+    type: unquoted
+    default_value: "Month"
+    allowed_value: {label: "Month Name" value:"Month"}
+    allowed_value: {label: "Day of Year" value: "DOY"}
+    allowed_value: {label: "Day of Month" value: "DOM"}
+    allowed_value: {label: "Day of Week" value: "DOW"}
+    allowed_value: {value: "Date"}
+
+  }
+
+
+  parameter: choose_comparison {
+    label: "Choose Comparison (Pivot)"
+    view_label: "_PoP"
+    type: unquoted
+    default_value: "Year"
+    allowed_value: {value: "Year" }
+    allowed_value: {value: "Month"}
+    allowed_value: {value: "Week"}
+  }
+
+  dimension: pop_row  {
+    view_label: "_PoP"
+    label_from_parameter: choose_rows
+    type: string
+    hidden: yes
+    #order_by_field: sort_Pop_Row # Important
+    sql:
+        {% if choose_rows._parameter_value == 'Month' %} ${history_created_month}
+        {% elsif choose_rows._parameter_value == 'DOY' %} ${history_created_day_of_year}
+        {% elsif choose_rows._parameter_value == 'DOM' %} ${history_created_day_of_month}
+        {% elsif choose_rows._parameter_value == 'DOW' %} ${history_created_day_of_week}
+        {% elsif choose_rows._parameter_value == 'Date' %} ${history_created_date}
+        {% else %}NULL{% endif %} ;;
+  }
+
+  dimension: pop_pivot {
+    view_label: "_PoP"
+    label_from_parameter: choose_comparison
+    type: string
+    #order_by_field: sort_hack2 # Important
+    sql:
+        {% if choose_comparison._parameter_value == 'Year' %} ${history_created_year}
+        {% elsif choose_comparison._parameter_value == 'Month' %} ${history_created_month_name}
+        {% elsif choose_comparison._parameter_value == 'Week' %} ${history_created_week}
+        {% else %}NULL{% endif %} ;;
+  }
+
+  dimension: sort_Pop_Row {
+    view_label: "_PoP"
+    type: number
+    sql:
+        {% if choose_rows._parameter_value == 'Month' %} ${history_created_month_name}
+        {% elsif choose_rows._parameter_value == 'DOY' %} ${history_created_day_of_year}
+        {% elsif choose_rows._parameter_value == 'DOM' %} ${history_created_day_of_month}
+        {% elsif choose_rows._parameter_value == 'DOW' %} ${history_created_day_of_week_index}
+        {% elsif choose_rows._parameter_value == 'Date' %} ${history_created_date}
+        {% else %}NULL{% endif %} ;;
+  }
+
+  dimension: sort_Pop_Pivot {
+    view_label: "_PoP"
+    hidden: yes
+    type: string
+    sql:
+        {% if choose_comparison._parameter_value == 'Year' %} ${history_created_year}
+        {% elsif choose_comparison._parameter_value == 'Month' %} ${history_created_month_num}
+        {% elsif choose_comparison._parameter_value == 'Week' %} ${history_created_week}
+        {% else %}NULL{% endif %} ;;
+  }
+
 
 
 }

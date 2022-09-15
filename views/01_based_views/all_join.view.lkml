@@ -11,7 +11,12 @@ view: all_join {
       week,
       month,
       quarter,
-      year
+      year,
+      day_of_month,
+      month_name,
+      day_of_week,
+      day_of_year,
+      day_of_week_index
     ]
     sql: ${TABLE}.creation_time ;;
   }
@@ -56,9 +61,17 @@ view: all_join {
       week,
       month,
       quarter,
-      year
+      year,
+      day_of_month,
+      month_name,
+      month_num,
+      day_of_week,
+      day_of_year,
+      day_of_week_index,
+      week_of_year
     ]
     sql: ${TABLE}.History_Created_Time ;;
+    drill_fields: [history_created_month_name,history_created_year,history_created_week]
   }
 
   dimension: history_slug {
