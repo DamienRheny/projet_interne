@@ -7,6 +7,9 @@ view: +all_join{
     type: unquoted
     label: "Choose the unit of the dashboard, Bytes or Price"
     suggest_dimension: unite
+    suggestable: yes
+    full_suggestions: yes
+    bypass_suggest_restrictions: yes
 #    allowed_value: {
 #      value: "B"
 #      label: "Bytes"
@@ -15,7 +18,7 @@ view: +all_join{
 #      value: "P"
 #      label: "Price"
 #    }
-#    default_value: "P"
+    default_value: "P"
   }
 
   dimension: unite {
@@ -29,8 +32,12 @@ view: +all_join{
   }
   parameter: choiceUnit{
     type: unquoted
-    label: "Choose bytes, megabytes, gigabytes"
+    label: "Choose euro, dollars, bytes, megabytes, gigabytes"
     suggest_dimension:  valeur
+    suggestable: yes
+    full_suggestions: yes
+    bypass_suggest_restrictions: yes
+    default_value: "bytes"
 #    allowed_value: {
 #      value: "euro"
 #      label: "Euro"
