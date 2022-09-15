@@ -109,6 +109,10 @@ ${sum_of_bytes}
 {% endif %};;
 
     drill_fields: [drilling*]
+    link: {
+      label: "Details of the cosumption pivot on user_name by unit"
+      url: "{{ link }}"
+    }
   }
 
 
@@ -145,7 +149,7 @@ ${sum_of_bytes}
 
   set: drilling {
 
-    fields: [user_name, unit, dashboard_title, folders_name, permission_set_name]
+    fields: [user_name,dashboard_title,permission_set_name, unit,currency]
   }
 
   parameter: choose_rows {

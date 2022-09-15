@@ -40,6 +40,10 @@ view: all_join {
   dimension: dashboard_title {
     type: string
     sql: ${TABLE}.Dashboard_Title ;;
+    link: {
+      label: "View information of dashboard"
+      url: "https://devoteamgcloud.eu.looker.com/dashboards/108?Dashboard+Title={{dashboard_title}}&History+Created+Month=7+month&Currency=Bytes"
+    }
   }
 
   dimension: folders_id {
@@ -147,6 +151,10 @@ view: all_join {
   dimension: user_name {
     type: string
     sql: ${TABLE}.User_Name ;;
+    link: {
+      label: "View user"
+      url: "https://devoteamgcloud.eu.looker.com/dashboards/106?User+Name={user_name}&History+Created+Month=6+month&Choose+the+unit+of+the+dashboard%2C+Bytes+or+Price=P"
+    }
   }
 
   measure: count {
