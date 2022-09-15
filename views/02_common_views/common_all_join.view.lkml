@@ -1,5 +1,5 @@
 include: "/views/01_based_views/all_join.view.lkml"
-
+include: "/views/01_based_views/mapping_unite.view.lkml"
 view: +all_join{
 
 
@@ -18,29 +18,19 @@ view: +all_join{
 #    default_value: "P"
   }
 
-# Création table mapping
-  sql_table_name: `@{bq_project}.@{bq_dataset}.mapping_unite`
-  ;;
-
   dimension: unite {
     type: string
-    sql: ${TABLE}.string_field_0 ;;
+    sql: SELECT string_field_0 FROM `sandbox-drheny.Looker_AllData.mapping_unite` LIMIT 1000 ;;
   }
 
   dimension: valeur {
     type: string
-    sql: ${TABLE}.string_field_1 ;;
+    sql: SELECT string_field_2 FROM `sandbox-drheny.Looker_AllData.mapping_unite` LIMIT 1000 ;;
   }
-
-  dimension: conversion {
-    type: string
-    sql: ${TABLE}.string_field_2 ;;
-  }
-
   parameter: choiceUnit{
     type: unquoted
     label: "Choose bytes, megabytes, gigabytes"
-    suggest_dimension: valeur
+    suggest_dimension:  valeur
 #    allowed_value: {
 #      value: "euro"
 #      label: "Euro"
@@ -148,5 +138,6 @@ ${sum_of_bytes}
 
     fields: [user_name, unit, dashboard_title, folders_name, permission_set_name]
   }
+
 
 }
