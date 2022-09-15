@@ -153,7 +153,7 @@ view: all_join {
     sql: ${TABLE}.User_Name ;;
     link: {
       label: "View user"
-      url: "https://devoteamgcloud.eu.looker.com/dashboards/106?User+Name={user_name}&History+Created+Month=6+month&Choose+the+unit+of+the+dashboard%2C+Bytes+or+Price=P"
+      url: "https://devoteamgcloud.eu.looker.com/dashboards/106?User+Name={{user_name}}&History+Created+Month=6+month&Choose+the+unit+of+the+dashboard%2C+Bytes+or+Price=P"
     }
   }
 
