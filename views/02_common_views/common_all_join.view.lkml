@@ -4,33 +4,34 @@ view: +all_join{
 
 
   parameter: choiceCurrency {
-    type: unquoted
+    type: string
     view_label: "Unit"
     label: "Choose the unit of the dashboard, Bytes or Price"
-    suggest_dimension: unite
+#    suggest_dimension: unite
     suggestable: yes
     full_suggestions: yes
     bypass_suggest_restrictions: yes
-#    allowed_value: {
-#      value: "B"
-#      label: "Bytes"
-#    }
-#    allowed_value: {
-#      value: "P"
-#      label: "Price"
-#    }
+    allowed_value: {
+      value: "B"
+      label: "Bytes"
+    }
+    allowed_value: {
+      value: "P"
+      label: "Price"
+    }
     default_value: "P"
   }
 
   dimension: unite {
     type: string
-    sql: SELECT string_field_0 FROM `sandbox-drheny.Looker_AllData.mapping_unite` LIMIT 1000 ;;
+    sql: @{bq_project}.@{bq_dataset}.mapping_unite.string_field_0 ;;
   }
 
   dimension: valeur {
     type: string
-    sql: SELECT string_field_2 FROM `sandbox-drheny.Looker_AllData.mapping_unite` LIMIT 1000 ;;
+    sql: SELECT string_field_1 FROM `sandbox-drheny.Looker_AllData.mapping_unite` LIMIT 1000 ;;
   }
+
   parameter: choiceUnit{
     type: unquoted
     view_label: "Unit"
@@ -140,17 +141,14 @@ ${sum_of_bytes}
     description: "Cost of the request"
     type:  number
     sql: ${unit} ;;
-    drill_fields: [drilling*]
+    #drill_fields: [drilling*]
     link: {
       label: "Details of the cosumption by unit"
       url: "{{ link }}&pivots=dashboard_title&sort=unit+desc&limit=20"
     }
   }
 
-  set: drilling {
 
-    fields: [user_name,dashboard_title,permission_set_name, unit,currency]
-  }
 
   parameter: choose_rows {
     label: "Choose Grouping (Rows)"
@@ -226,6 +224,9 @@ ${sum_of_bytes}
         {% else %}NULL{% endif %} ;;
   }
 
+  set: drilling {
 
+    fields: [user_name,dashboard_title,permission_set_name, unit,currency]
+  }
 
 }
