@@ -110,7 +110,7 @@ ${sum_of_bytes}
 
     drill_fields: [drilling*]
     link: {
-      label: "Details of the cosumption pivot on user_name by unit"
+      label: "Details of the cosumption by unit"
       url: "{{ link }}"
     }
   }
@@ -142,7 +142,7 @@ ${sum_of_bytes}
     sql: ${unit} ;;
     drill_fields: [drilling*]
     link: {
-      label: "Details of the cosumption pivot on user_name by unit"
+      label: "Details of the cosumption by unit"
       url: "{{ link }}&pivots=dashboard_title&sort=unit+desc&limit=20"
     }
   }
