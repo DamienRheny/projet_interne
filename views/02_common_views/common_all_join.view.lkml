@@ -2,7 +2,6 @@ include: "/views/01_based_views/all_join.view.lkml"
 include: "/views/01_based_views/mapping_unite.view.lkml"
 view: +all_join{
 
-
   parameter: choiceCurrency {
     type: string
     view_label: "Unit"
@@ -22,10 +21,11 @@ view: +all_join{
     default_value: "P"
   }
 
-  dimension: unite {
-    type: string
-    sql: @{bq_project}.@{bq_dataset}.mapping_unite.string_field_0 ;;
-  }
+
+#  dimension: unite {
+#    type: string
+#    sql: @{bq_project}.@{bq_dataset}.mapping_unite.string_field_0 ;;
+#  }
 
   dimension: valeur {
     type: string
